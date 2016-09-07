@@ -1,6 +1,6 @@
 json = dato.contexts.map do |context|
   {
-    "ID" => context.reference_id,
+    "ID" => context.reference_id || "",
     "Text" => context.text,
     "AlertText" => context.alert_text,
     "AlertShow" => context.alert_show,
