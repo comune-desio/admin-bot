@@ -1,18 +1,22 @@
+def value_or_blank(value)
+  value || ""
+end
+
 json = dato.contexts.map do |context|
   {
-    "ID" => context.reference_id || "",
-    "Text" => context.text,
-    "AlertText" => context.alert_text,
+    "ID" => value_or_blank(context.reference_id),
+    "Text" => value_or_blank(context.text),
+    "AlertText" => value_or_blank(context.alert_text),
     "AlertShow" => context.alert_show,
     "Button" => context.choice.map do |choice|
       if choice.url == "" || choice.url == nil
         {
-          "Text" => choice.label,
-          "ID" => choice.context.reference_id
+          "Text" => value_or_blank(choice.label),
+          "ID" => value_or_blank(choice.context.reference_id)
         }
       else
       {
-        "Text" => choice.label,
+        "Text" => value_or_blank(choice.label),
         "URL" => choice.url
       }
       end
