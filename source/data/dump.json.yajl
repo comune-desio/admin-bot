@@ -1,0 +1,21 @@
+json = dato.contexts.map do |context|
+  {
+    "ID" => context.reference_id,
+    "Text" => context.text,
+    "AlertText" => context.alert_text,
+    "AlertShow" => context.alert_show,
+    "Button" => context.choice.map do |choice|
+      if choice.url == "" || choice.url == nil
+        {
+          "Text" => choice.label,
+          "ID" => choice.context.reference_id
+        }
+      else
+      {
+        "Text" => choice.label,
+        "URL" => choice.url
+      }
+      end
+    end
+  }
+end
