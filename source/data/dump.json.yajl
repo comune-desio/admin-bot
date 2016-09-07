@@ -5,7 +5,7 @@ end
 json = dato.contexts.map do |context|
   {
     "ID" => value_or_blank(context.reference_id),
-    "Text" => value_or_blank(context.text),
+    "Text" => value_or_blank(context.description),
     "AlertText" => value_or_blank(context.alert_text),
     "AlertShow" => context.alert_show,
     "Button" => context.choice.map do |choice|
