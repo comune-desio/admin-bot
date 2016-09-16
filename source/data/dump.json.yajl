@@ -2,8 +2,12 @@ def value_or_blank(value)
   value || ""
 end
 
+def is_blank?(value)
+  value == "" || value == nil
+end
+
 json = dato.contexts.map do |context|
-  {
+  data = {
     "ID" => value_or_blank(context.reference_id),
     "Text" => value_or_blank(context.description),
     "ParseMode" => "Markdown",
@@ -23,4 +27,8 @@ json = dato.contexts.map do |context|
       end
     end
   }
+  if !is_blank?(context.text_from_url)
+    data["TextFromURL"] = context.text_from_url
+  end
+  data
 end
